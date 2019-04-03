@@ -1,0 +1,334 @@
+<!doctype html>
+<html>
+<head>
+<title>You Are The Sky</title>
+
+<meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+<script type="text/javascript">
+TIMEOUT_SECS = 120
+</script>
+
+<!-- cdn for the mo, locally later -->
+<link rel="stylesheet" href="swiper.min.css">
+<script src="swiper.min.js" type="text/javascript"></script>
+
+<!-- local styles -->
+<style type="text/css">
+html {
+	height: 100%;
+	margin: 0px;
+}
+body {
+	height: 100%;
+	margin: 0px;
+	font-family: Geneva, Helvetica, Tahoma, Arial, Sans;
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.swiper-container {
+	width: 100%;
+	height: 100%;
+}
+.swiper-slide {
+	text-align: center;
+	font-size: 18px;
+	background: #fff;
+	/* Center slide text vertically */
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-box-pack: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
+	-webkit-box-align: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.nav-buttons {
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	position: absolute;
+	bottom: 0px;
+	width: 100%;
+	z-index: 1000;
+	padding-bottom: 8px;
+	opacity: 0;
+	pointer-events: none;
+}
+.nav-buttons a {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border: 2px solid #ccc;
+	color: #000000;
+	text-decoration: none;
+	padding: 4px 10px;
+	border-radius: 4px;
+	margin: 0 10px;
+	font-size: 13px;
+	background: #ffffff;
+	width: 33px;
+	height: 33px;
+}
+.nav-buttons a img {
+	height: 33px;
+	width: 33px;
+	vertical-align: top;
+}
+
+.nav-buttons .current {
+	border: 2px solid #000000;
+}
+#btn_start span {
+}
+
+.swipeInstructions
+{
+	margin-top: 4rem;
+}
+
+.instructionText
+{
+	color: #888;
+}
+
+.fade-in {
+	visibility: visible;
+	pointer-events: auto;
+  opacity: 1;
+  transition: opacity .25s ease-in;
+}
+
+.fade-out {
+	opacity: 0;
+	pointer-events: none;
+	transition: visibility 0s 2s, opacity 2s linear;
+}
+
+@keyframes marquee {
+    0%   { text-indent: 300pt }
+    80% { text-indent: -300pt }
+    100% { text-indent: -300pt }
+}
+
+@-webkit-keyframes marquee {
+    0%   { text-indent: 300pt }
+    80% { text-indent: -300pt }
+    100% { text-indent: -300pt }
+}
+
+.swipeIndicator {
+	margin-top: 0;
+	width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: marquee 5s linear infinite;
+    -webkit-animation: marquee 5s linear infinite;
+    color: #cccccc;
+    font-size: 36pt;
+    position: relative;
+}
+
+.swipeIndicator:after {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
+  background-image: linear-gradient(to left, rgba(255,255,255,0) 90%, rgba(255,255,255, 1) 100%),
+  	linear-gradient(to right, rgba(255,255,255,0) 90%, rgba(255,255,255, 1) 100%);
+  width: 100%;
+  height: 36pt;
+}
+</style>
+</head>
+
+<body>
+
+	<div id="intro" style="display:none">
+<div><p><big><b>You Are The Sky</b></big><br>A love story in <i>n+1</i> parts.</p>
+</div>
+
+<div class="swipeInstructions">
+	<p class="swipeIndicator">&laquo;&laquo;&laquo;</div>
+	<p class="instructionText">Swipe the screen to advance.</p></div>
+</div>
+
+</div>
+
+<div id="about" style="display:none">
+	<div>
+		<p><i>You Are The Sky</i></p>
+		<p>written by Rob, 2006-2007.</p>
+		
+	</div>
+	<div class="swipeInstructions">
+			<p>Thanks to Anna, Ruth, and Serenity for additional photography.</p>
+			<p>Astrophotography is courtesy of NASA.</p>
+	</div>
+</div>
+
+<div class="swiper-container">
+	<div class="swiper-wrapper">
+	</div>
+	<!-- Add Arrows -->
+	<!-- <div class="swiper-button-next"></div>
+	<div class="swiper-button-prev"></div> -->
+</div>
+<div class="nav-buttons">
+	<a href="#" id="btn_start" class="current"><span>Start</span></a>
+	<a href="#" id="btn_one"><img src="uiimg/one.png"></a>
+	<a href="#" id="btn_other"><img src="uiimg/other.png"></a>
+	<a href="#" id="btn_meeting"><img src="uiimg/meeting.png"></a>
+	<a href="#" id="btn_chaos"><img src="uiimg/chaos.png"></a>
+	<a href="#" id="btn_calm"><img src="uiimg/calm.png"></a>
+	<a href="#" id="btn_about"><span>About</span></a>
+</div>
+
+<!-- wire it all up -->
+<script>
+	window.timeoutTimer = window.setTimeout(function reset() {
+		console.log("timed out")
+		swiper.slideTo(0, 0);
+		window.hideNav();
+	}, TIMEOUT_SECS * 1000);
+
+	window.showNav = function () {
+		document.querySelector('.nav-buttons').className = "nav-buttons fade-in";
+	}
+
+	window.hideNav = function () {
+		document.querySelector('.nav-buttons').className = "nav-buttons fade-out";
+	}
+
+	var swiper = new Swiper('.swiper-container', {
+/*		navigation: {
+			nextEl: '.swiper-button-next',
+			prevEl: '.swiper-button-prev',
+		}, */
+		virtual: {
+			slides: (function () {
+			  var slides = [];
+			  slides.push(document.querySelector('#intro').innerHTML)
+			  for (var i = 1; i <= 150; i += 1) {
+				url = "img/" + i + ".png"
+				slides.push("<img src=\"" + url + "\">");
+			  }
+				slides.push(document.querySelector('#about').innerHTML)
+			  return slides;
+			}()),
+		},
+		
+		on: {
+			init: function () {
+				document.querySelector('.swiper-container').addEventListener('touchstart', function (e) {
+					e.preventDefault();
+				});
+				document.querySelector('.swiper-wrapper').addEventListener('touchstart', function (e) {
+					e.preventDefault();
+				});
+			},
+			click: function () {
+/* 				if (document.body.requestFullscreen) {
+					document.body.requestFullscreen();
+				}
+				else if (document.documentElement.webkitRequestFullscreen)
+				{
+					document.documentElement.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+				} */
+				window.showNav();
+			},
+			sliderMove: function () {
+				window.hideNav();
+			},
+			slideChange: function () {
+				document.querySelector('#btn_start').className = ""
+				document.querySelector('#btn_one').className = ""
+				document.querySelector('#btn_other').className = ""
+				document.querySelector('#btn_meeting').className = ""
+				document.querySelector('#btn_chaos').className = ""
+				document.querySelector('#btn_calm').className = ""
+				document.querySelector('#btn_about').className = ""
+
+				if (this.activeIndex == 0) {
+					document.querySelector('#btn_start').className = "current"
+				}
+				if (this.activeIndex >= 1 && this.activeIndex < 31) {
+					document.querySelector('#btn_one').className = "current"
+				}
+				if (this.activeIndex >= 31 && this.activeIndex < 61) {
+					document.querySelector('#btn_other').className = "current"
+				}
+				if (this.activeIndex >= 61 && this.activeIndex < 91) {
+					document.querySelector('#btn_meeting').className = "current"
+				}
+				if (this.activeIndex >= 91 && this.activeIndex < 121) {
+					document.querySelector('#btn_chaos').className = "current"
+				}
+				if (this.activeIndex >= 121  && this.activeIndex < 151) {
+					document.querySelector('#btn_calm').className = "current"
+				}
+				if (this.activeIndex >= 151) {
+					document.querySelector('#btn_about').className = "current"
+				}
+
+				// invalidate the timeout
+				if (timeoutTimer) {
+					window.clearTimeout(window.timeoutTimer)
+					window.timeoutTimer = window.setTimeout(function reset() {
+						console.log("timed out")
+						swiper.slideTo(0, 0);
+					}, TIMEOUT_SECS * 1000);
+				}
+			}
+		}
+	});
+	
+	document.querySelector('#btn_start').addEventListener('click', function (e) {
+		e.preventDefault();
+		swiper.slideTo(0, 0);	
+	});
+	
+	document.querySelector('#btn_one').addEventListener('click', function (e) {
+		e.preventDefault();
+		swiper.slideTo(1, 0);	
+	});
+	document.querySelector('#btn_other').addEventListener('click', function (e) {
+		e.preventDefault();
+		swiper.slideTo(31, 0);	
+	});
+	document.querySelector('#btn_meeting').addEventListener('click', function (e) {
+		e.preventDefault();
+		swiper.slideTo(61, 0);	
+	});
+	document.querySelector('#btn_chaos').addEventListener('click', function (e) {
+		e.preventDefault();
+		swiper.slideTo(91, 0);	
+	});
+	document.querySelector('#btn_calm').addEventListener('click', function (e) {
+		e.preventDefault();
+		swiper.slideTo(121, 0);	
+	});
+	document.querySelector('#btn_about').addEventListener('click', function (e) {
+		e.preventDefault();
+		swiper.slideTo(151, 0);	
+	});
+</script>
+</body>
+</html>
