@@ -1,0 +1,153 @@
+html {
+    height: 100%;
+    margin: 0px;
+}
+
+body {
+	height: 100%;
+	margin: 0px;
+	font-family: Geneva, Helvetica, Tahoma, Arial, Sans;
+	-webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome and Opera */
+}
+
+.swiper-container {
+    width: 100%;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+    /* Center slide text vertically */
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    z-index: 1000;
+    padding-bottom: 8px;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.nav-buttons a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #ccc;
+    color: #000000;
+    text-decoration: none;
+    padding: 4px 10px;
+    border-radius: 4px;
+    margin: 0 10px;
+    font-size: 13px;
+    background: #ffffff;
+    width: 33px;
+    height: 33px;
+}
+
+.nav-buttons a img {
+    height: 33px;
+    width: 33px;
+    vertical-align: top;
+}
+
+.nav-buttons .current {
+    border: 2px solid #000000;
+}
+
+#btn_start span {}
+
+.swipeInstructions {
+    margin-top: 4rem;
+}
+
+.instructionText {
+    color: #888;
+}
+
+.fade-in {
+    visibility: visible;
+    pointer-events: auto;
+    opacity: 1;
+    transition: opacity .25s ease-in;
+}
+
+.fade-out {
+    opacity: 0;
+    pointer-events: none;
+    transition: visibility 0s 2s, opacity 2s linear;
+}
+
+@keyframes marquee {
+    0% {
+        text-indent: 300pt
+    }
+    80% {
+        text-indent: -300pt
+    }
+    100% {
+        text-indent: -300pt
+    }
+}
+
+@-webkit-keyframes marquee {
+    0% {
+        text-indent: 300pt
+    }
+    80% {
+        text-indent: -300pt
+    }
+    100% {
+        text-indent: -300pt
+    }
+}
+
+.swipeIndicator {
+    margin-top: 0;
+    width: 250px;
+    overflow: hidden;
+    white-space: nowrap;
+    animation: marquee 5s linear infinite;
+    -webkit-animation: marquee 5s linear infinite;
+    color: #cccccc;
+    font-size: 36pt;
+    position: relative;
+}
+
+.swipeIndicator:after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: linear-gradient(to left, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 1) 100%), linear-gradient(to right, rgba(255, 255, 255, 0) 90%, rgba(255, 255, 255, 1) 100%);
+    width: 100%;
+    height: 36pt;
+}
+
