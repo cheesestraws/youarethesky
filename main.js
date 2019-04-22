@@ -18,7 +18,7 @@ var swiper = new Swiper('.swiper-container', {
             var slides = [];
             slides.push(document.querySelector('#intro').innerHTML)
             for (var i = 1; i <= 150; i += 1) {
-                url = "img/" + i + ".png"
+                url = "img/" + i + ".jpg"
                 slides.push("<img src=\"" + url + "\">");
             }
             slides.push(document.querySelector('#about').innerHTML)
