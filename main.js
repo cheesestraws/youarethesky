@@ -1,5 +1,3 @@
-// Determine if we're on a mobile device
-
 window.timeoutTimer = window.setTimeout(function reset() {
     console.log("timed out")
     swiper.slideTo(0, 0);
@@ -99,12 +97,12 @@ document.addEventListener('keyup', function (e) {
         case "ArrowLeft":
             e.preventDefault();
             window.hideNav();
-            swiper.slidePrev(200);
+            swiper.slidePrev(KEYBOARD_ANIMATION_DURATION);
             break;
         case "ArrowRight":
             e.preventDefault();
             window.hideNav();
-            swiper.slideNext(200);
+            swiper.slideNext(KEYBOARD_ANIMATION_DURATION);
             break;
         case " ":
             e.preventDefault();
