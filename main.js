@@ -1,6 +1,5 @@
 // Determine if we're on a mobile device
 
-
 window.timeoutTimer = window.setTimeout(function reset() {
     console.log("timed out")
     swiper.slideTo(0, 0);
