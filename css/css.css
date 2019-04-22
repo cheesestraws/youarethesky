@@ -87,7 +87,7 @@ body {
 
 #btn_start span {}
 
-.swipeInstructions, .clickInstructions {
+.swipeInstructions, .clickInstructions, .thanks {
     margin-top: 4rem;
 }
 
