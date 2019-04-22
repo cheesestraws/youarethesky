@@ -1,3 +1,6 @@
+// Determine if we're on a mobile device
+
+
 window.timeoutTimer = window.setTimeout(function reset() {
     console.log("timed out")
     swiper.slideTo(0, 0);
@@ -35,8 +38,15 @@ var swiper = new Swiper('.swiper-container', {
                 e.preventDefault();
             });
         },
-        click: function () {
-            window.showNav();
+        tap: function (e) {
+            if (e.sourceCapabilities.firesTouchEvents)
+            {
+                window.showNav();
+            }
+            else
+            {
+                swiper.slideNext(0);
+            }
         },
         sliderMove: function () {
             window.hideNav();
@@ -81,6 +91,32 @@ var swiper = new Swiper('.swiper-container', {
                 }, TIMEOUT_SECS * 1000);
             }
         }
+    }
+});
+
+document.addEventListener('keyup', function (e) {
+    switch (e.key) 
+    {
+        case "ArrowLeft":
+            e.preventDefault();
+            window.hideNav();
+            swiper.slidePrev(200);
+            break;
+        case "ArrowRight":
+            e.preventDefault();
+            window.hideNav();
+            swiper.slideNext(200);
+            break;
+        case " ":
+            e.preventDefault();
+            window.hideNav();
+            swiper.slideNext(0);
+            break;
+        case "Home":
+            e.preventDefault();
+            window.hideNav();
+            swiper.slideTo(0, 0);
+            break;        
     }
 });
 
