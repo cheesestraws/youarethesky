@@ -36,7 +36,7 @@ var swiper = new Swiper('.swiper-container', {
             });
         },
         tap: function (e) {
-            if (e.sourceCapabilities.firesTouchEvents)
+            if (e.type == "touchstart")
             {
                 window.showNav();
             }
